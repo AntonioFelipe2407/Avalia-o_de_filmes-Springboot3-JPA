@@ -3,7 +3,9 @@ package com.moreiraf7.listmovies.entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity //Anotation de que a classe é uma entidade
 @Table(name = "tb_movie") //Anotation para dar o nome a tabela no banco de dados
@@ -21,6 +23,10 @@ public class Movie implements Serializable {
     @Column(name = "movie_year")
     private Integer year;
     private String directedBy;
+
+    // Associação
+    @OneToMany(mappedBy = "movie") // Transformando a associação em FK
+    private Set<Rating> ratings = new HashSet<>();
 
     public Movie() {
     }
@@ -80,6 +86,11 @@ public class Movie implements Serializable {
 
     public void setDirectedBy(String directedBy) {
         this.directedBy = directedBy;
+    }
+    
+    // getter da associação
+    public Set<Rating> getRatings(){
+        return ratings;
     }
 
     @Override
