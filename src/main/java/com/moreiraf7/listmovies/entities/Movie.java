@@ -87,7 +87,7 @@ public class Movie implements Serializable {
     public void setDirectedBy(String directedBy) {
         this.directedBy = directedBy;
     }
-    
+
     // getter da associação
     public Set<Rating> getRatings(){
         return ratings;
