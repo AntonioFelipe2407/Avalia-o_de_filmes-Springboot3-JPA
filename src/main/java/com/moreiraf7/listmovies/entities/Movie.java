@@ -12,9 +12,13 @@ public class Movie implements Serializable {
     @Id // Anotation diz que esse atributo é o id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Anotation para gerar o id automatico
     private Long id;
+
     private String title;
     private String gender;
     private Integer durationMinutes;
+
+    //Palavra "year" é reservada por alguns bancos de dados
+    @Column(name = "movie_year")
     private Integer year;
     private String directedBy;
 
