@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 //Interface responsável pelo acesso ao banco de dados, e as implementações do JpaRepository
 public interface MovieRepository extends JpaRepository<Movie,Long> {
-    
+
 }
