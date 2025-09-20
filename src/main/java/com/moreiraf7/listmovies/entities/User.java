@@ -25,13 +25,11 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user",  // Transformando a associação em FK
             cascade = CascadeType.ALL, //Ao mexer no usuario, mexe nas avaliacoes tambem
             orphanRemoval = true)  // Ao deletar o usuario, suas avaliacoes tambem serao deletadas no banco
-    @JsonIgnore //
     private Set<Rating> ratings = new HashSet<>();
 
     @OneToMany(mappedBy = "user", // Transformando a associação em FK
             cascade = CascadeType.ALL, //Ao mexer no usuario, mexe nas avaliacoes tambem
             orphanRemoval = true)  // Ao deletar o usuario, suas avaliacoes tambem serao deletadas no banco
-    @JsonIgnore
     private Set<Favorite> favorites = new HashSet<>();
 
     public User() {

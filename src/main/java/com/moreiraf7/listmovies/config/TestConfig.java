@@ -1,8 +1,10 @@
 package com.moreiraf7.listmovies.config;
 
+import com.moreiraf7.listmovies.entities.Favorite;
 import com.moreiraf7.listmovies.entities.Movie;
 import com.moreiraf7.listmovies.entities.Rating;
 import com.moreiraf7.listmovies.entities.User;
+import com.moreiraf7.listmovies.repository.FavoriteRepository;
 import com.moreiraf7.listmovies.repository.MovieRepository;
 import com.moreiraf7.listmovies.repository.RatingRepository;
 import com.moreiraf7.listmovies.repository.UserRepository;
@@ -27,6 +29,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private RatingRepository ratingRepository;
 
+    @Autowired
+    private FavoriteRepository favoriteRepository;
+
     @Override
     public void run(String... args) throws Exception {
 
@@ -47,6 +52,11 @@ public class TestConfig implements CommandLineRunner {
         Rating r4 = new Rating(null, 2, true," ", Instant.parse("2025-09-18T20:53:07Z"), u1, m2);
 
         ratingRepository.saveAll(Arrays.asList(r1, r2, r3, r4));
+
+        Favorite f1 = new Favorite(null, u1, m1);
+        Favorite f2 = new Favorite(null, u2, m2);
+
+        favoriteRepository.saveAll(Arrays.asList(f1, f2));
 
     }
 }

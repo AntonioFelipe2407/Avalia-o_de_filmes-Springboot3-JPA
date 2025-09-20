@@ -1,6 +1,7 @@
 package com.moreiraf7.listmovies.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -34,6 +35,7 @@ public class Rating implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "user_id") // Tranforma a associação em chave estrangeira
+    @JsonIgnore //
     private User user;
 
     @ManyToOne

@@ -1,5 +1,6 @@
 package com.moreiraf7.listmovies.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -19,6 +20,7 @@ public class Favorite implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "user_id") // Tranforma a associação em chave estrangeira
+    @JsonIgnore //
     private User user;
 
     @ManyToOne
