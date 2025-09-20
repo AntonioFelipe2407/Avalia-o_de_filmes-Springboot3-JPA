@@ -1,10 +1,10 @@
 package com.moreiraf7.listmovies.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -21,7 +21,10 @@ public class User implements Serializable {
     private String senha;
 
     //Associação com Rating
-    @OneToMany (mappedBy = "user") // Transformando a associação em FK
+    @OneToMany (mappedBy = "user",  // Transformando a associação em FK
+            cascade = CascadeType.ALL, //Ao mexer no usuario, mexe nas avaliacoes tambem
+            orphanRemoval = true)  // Ao deletar o usuario, suas avaliacoes tambem serao deletadas no banco
+    @JsonIgnore //
     private Set<Rating> ratings = new HashSet<>();
 
     public User() {

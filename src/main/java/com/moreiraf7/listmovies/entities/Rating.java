@@ -1,5 +1,6 @@
 package com.moreiraf7.listmovies.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -9,7 +10,9 @@ import java.time.Instant;
 import java.util.Objects;
 
 @Entity // Anotation diz que esse atributo é o id
-@Table(name = "tb_rating") //Anotation para dar o nome a tabela no banco de dados
+@Table(name = "tb_rating", uniqueConstraints = { //Anotation para dar o nome a tabela no banco de dados
+        @UniqueConstraint(columnNames = {"user_id", "movie_id"}) // Validacao para que um usuario avalie o mesmo filme apenas 1 vez
+})
 public class Rating implements Serializable {
 
     @Id // Anotation diz que esse atributo é o id
@@ -24,6 +27,7 @@ public class Rating implements Serializable {
     private Boolean watched;
     private String review;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant dateRating;
 
     //Associação

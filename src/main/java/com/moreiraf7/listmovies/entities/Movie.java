@@ -1,5 +1,6 @@
 package com.moreiraf7.listmovies.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -26,6 +27,7 @@ public class Movie implements Serializable {
 
     // Associação
     @OneToMany(mappedBy = "movie") // Transformando a associação em FK
+    @JsonIgnore //
     private Set<Rating> ratings = new HashSet<>();
 
     public Movie() {
