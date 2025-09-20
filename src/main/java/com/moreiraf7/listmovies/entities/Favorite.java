@@ -16,7 +16,7 @@ public class Favorite implements Serializable {
     private Long id;
 
     //ASSOCIACOES
-    
+
     @ManyToOne
     @JoinColumn(name = "user_id") // Tranforma a associação em chave estrangeira
     private User user;
