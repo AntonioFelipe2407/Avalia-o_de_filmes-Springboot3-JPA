@@ -25,10 +25,18 @@ public class Movie implements Serializable {
     private Integer year;
     private String directedBy;
 
-    // Associação
-    @OneToMany(mappedBy = "movie") // Transformando a associação em FK
+    // ASSOCIACOES
+    @OneToMany(mappedBy = "movie", // Transformando a associação em FK
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     @JsonIgnore //
     private Set<Rating> ratings = new HashSet<>();
+
+    @OneToMany(mappedBy = "movie", // Transformando a associação em FK
+            cascade = CascadeType.ALL, //Ao mexer no filme, reflete nos favoritos tambem
+            orphanRemoval = true) // Ao deletar o filme, suas favoritacoes tambem serao deletadas no banco
+    @JsonIgnore
+    private Set<Favorite> favorites = new HashSet<>();
 
     public Movie() {
     }
@@ -91,8 +99,13 @@ public class Movie implements Serializable {
     }
 
     // getter da associação
-    public Set<Rating> getRatings(){
+    public Set<Rating> getRatings() {
         return ratings;
+    }
+
+    // getter da associação
+    public Set<Favorite> getFavorites() {
+        return favorites;
     }
 
     @Override

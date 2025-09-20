@@ -9,9 +9,9 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
-@Entity // Anotation diz que esse atributo é o id
-@Table(name = "tb_rating", uniqueConstraints = { //Anotation para dar o nome a tabela no banco de dados
-        @UniqueConstraint(columnNames = {"user_id", "movie_id"}) // Validacao para que um usuario avalie o mesmo filme apenas 1 vez
+@Entity //Anotation de que a classe é uma entidade
+@Table(name = "tb_rating", //Anotation para dar o nome a tabela no banco de dados
+        uniqueConstraints = { @UniqueConstraint(columnNames = {"user_id", "movie_id"}) // Validacao para que um usuario avalie o mesmo filme apenas 1 vez
 })
 public class Rating implements Serializable {
 
@@ -30,12 +30,12 @@ public class Rating implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant dateRating;
 
-    //Associação
+    //ASSOCIACOES
+
     @ManyToOne
     @JoinColumn(name = "user_id") // Tranforma a associação em chave estrangeira
     private User user;
 
-    //Associação
     @ManyToOne
     @JoinColumn(name = "movie_id") // Tranforma a associação em chave estrangeira
     private Movie movie;

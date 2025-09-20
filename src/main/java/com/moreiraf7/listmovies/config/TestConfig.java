@@ -45,8 +45,8 @@ public class TestConfig implements CommandLineRunner {
         Rating r2 = new Rating(null, 3, true," ", Instant.parse("2025-09-17T19:53:07Z"), u2, m1);
         Rating r3 = new Rating(null, 5, true," ", Instant.parse("2025-09-18T19:53:07Z"), u2, m2);
         Rating r4 = new Rating(null, 2, true," ", Instant.parse("2025-09-18T20:53:07Z"), u1, m2);
-        Rating r5 = new Rating(null, 5, true," ", Instant.parse("2025-09-16T19:53:07Z"), u1, m1);
-        ratingRepository.saveAll(Arrays.asList(r1, r2, r3, r4, r5));
+
+        ratingRepository.saveAll(Arrays.asList(r1, r2, r3, r4));
 
     }
 }

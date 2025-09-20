@@ -20,12 +20,19 @@ public class User implements Serializable {
     private String email;
     private String senha;
 
-    //Associação com Rating
-    @OneToMany (mappedBy = "user",  // Transformando a associação em FK
+    //ASSOCIACOES
+
+    @OneToMany(mappedBy = "user",  // Transformando a associação em FK
             cascade = CascadeType.ALL, //Ao mexer no usuario, mexe nas avaliacoes tambem
             orphanRemoval = true)  // Ao deletar o usuario, suas avaliacoes tambem serao deletadas no banco
     @JsonIgnore //
     private Set<Rating> ratings = new HashSet<>();
+
+    @OneToMany(mappedBy = "user", // Transformando a associação em FK
+            cascade = CascadeType.ALL, //Ao mexer no usuario, mexe nas avaliacoes tambem
+            orphanRemoval = true)  // Ao deletar o usuario, suas avaliacoes tambem serao deletadas no banco
+    @JsonIgnore
+    private Set<Favorite> favorites = new HashSet<>();
 
     public User() {
     }
@@ -70,8 +77,13 @@ public class User implements Serializable {
     }
 
     // getter da associação
-    public Set<Rating> getRatings(){
+    public Set<Rating> getRatings() {
         return ratings;
+    }
+
+    // getter da associação
+    public Set<Favorite> getFavorites() {
+        return favorites;
     }
 
     @Override
