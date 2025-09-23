@@ -38,4 +38,10 @@ public class UserResource {
                 buildAndExpand(user.getId()).toUri(); // Substitui o placeHolder pelo novo id gerado
         return ResponseEntity.created(uri).body(user); // Retorna o status 201 created e no corpo o novo usuário inserido
     }
+
+    @PostMapping(value = "/{id}") // Endpoint para inserir elementos na request
+    public  ResponseEntity<User> update(@PathVariable Long id, @RequestBody User obj){
+        User user = service.update(id, obj);
+        return ResponseEntity.ok().body(user);
+    }
 }
