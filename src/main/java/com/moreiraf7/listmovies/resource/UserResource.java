@@ -10,6 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController // Anotation diz que a classe é um controller (resource)
 @RequestMapping(value = "/users") // Anotation com o value para mapear a riquisicao
@@ -22,6 +23,12 @@ public class UserResource {
     public ResponseEntity<List<User>> findAll(){
         List<User> list = service.findAll();
         return ResponseEntity.ok().body(list);
+    }
+
+    @GetMapping(value = "/{id}") // Ao pesquisar a requisição retorna todos os usuarios
+    public ResponseEntity<User> findById(@PathVariable Long id){ // Anotation para que o spring aceite o id como parametro ao realizar a request
+        User user = service.findById(id);
+        return ResponseEntity.ok().body(user);
     }
 
     @PostMapping // Endpoint para inserir elementos na request
