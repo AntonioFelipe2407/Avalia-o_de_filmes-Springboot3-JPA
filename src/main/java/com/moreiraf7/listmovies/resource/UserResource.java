@@ -39,9 +39,16 @@ public class UserResource {
         return ResponseEntity.created(uri).body(user); // Retorna o status 201 created e no corpo o novo usuário inserido
     }
 
-    @PostMapping(value = "/{id}") // Endpoint para inserir elementos na request
+    @PutMapping(value = "/{id}") // Endpoint para inserir elementos na request
     public  ResponseEntity<User> update(@PathVariable Long id, @RequestBody User obj){
         User user = service.update(id, obj);
         return ResponseEntity.ok().body(user);
+    }
+
+    @DeleteMapping(value = "/{id}") // Endpoint para deletar elementos na request
+    public ResponseEntity<Void> deleteById(@PathVariable Long id){
+        service.deleteById(id);
+        return ResponseEntity.noContent().build();
+
     }
 }
