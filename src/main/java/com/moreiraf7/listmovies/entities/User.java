@@ -1,6 +1,5 @@
 package com.moreiraf7.listmovies.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -9,16 +8,16 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity //Anotation de que a classe é uma entidade
-@Table(name = "tb_user") //Anotation para dar o nome a tabela no banco de dados
+@Table(name = "tb_user") //Anotation para dar o name a tabela no banco de dados
 public class User implements Serializable {
 
     @Id // Anotation diz que esse atributo é o id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Anotation para gerar o id automatico
     private Long id;
 
-    private String nome;
+    private String name;
     private String email;
-    private String senha;
+    private String password;
 
     //ASSOCIACOES
 
@@ -35,11 +34,11 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(Long id, String nome, String email, String senha) {
+    public User(Long id, String name, String email, String password) {
         this.id = id;
-        this.nome = nome;
+        this.name = name;
         this.email = email;
-        this.senha = senha;
+        this.password = password;
     }
 
     public Long getId() {
@@ -50,12 +49,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -66,12 +65,12 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     // getter da associação
